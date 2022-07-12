@@ -1,0 +1,72 @@
+from tkinter import *
+
+
+def calculate():
+    net_income = income_entry.get()
+    rent = rent_entry.get()
+    utilities = utilities_entry.get()
+    misc = misc_entry.get()
+
+    if net_income.isnumeric() == False:
+        print("Only enter numbers into the texts fields")
+    elif rent.isnumeric() == False:
+        print("Only enter numbers into the texts fields")
+    elif utilities.isnumeric() == False:
+        print("Only enter numbers into the texts fields")
+    elif misc.isnumeric() == False:
+        print("Only enter numbers into the texts fields")
+
+    else:
+        total = int(net_income) - int(rent) - int(utilities) - int(misc)
+        print("The leftvoer money left to save starts with " + str(total))
+        window.destroy()
+        window_2 = Tk()
+        window_2.geometry("900x600")
+        window_2_label = Label(window_2, text="After all monthly expenses the amount you have left to save is $"
+                                                  "" + str(total), font= ('Aerial', 14))
+        window_2_label.pack()
+        Log_Purchase = Button(window_2, text="Log a Purchase", command=log_purchase)
+        Log_Purchase.pack(side=BOTTOM)
+        window_2.mainloop()
+
+def log_purchase():
+    pass
+
+
+
+window = Tk()
+
+submit = Button(window, text="Submit", command=calculate)
+submit.pack(side=BOTTOM)
+window.title('Create Your Basic Budget')
+window.geometry("900x600")
+
+income_label= Label(window, text= "Hello There!\n \n Lets's start with the basic budget.\n\n"
+                        "What is your monthly net income (after taxes)", font= ('Aerial', 14))
+income_label.pack()
+income_entry = Entry(window, width=50)
+income_entry.pack()
+
+rent_label = Label(window, text="\nGreat! Next, how much do you pay each month for rent or mortgage?", font= ('Aerial', 14))
+rent_label.pack()
+rent_entry = Entry(window, width=50)
+rent_entry.pack()
+
+utilities_label = Label(window, text="\nNext are utilities. Enter monthly expenses for heating annd cooling costs, gas, "
+                                     "etc", font= ('Aerial', 14))
+utilities_label.pack()
+utilities_entry = Entry(window, width=50)
+utilities_entry.pack()
+
+subscriptions_label = Label(window, text="\nDo you have monthly subscritions? total them up and add here", font= ('Aerial', 14))
+subscriptions_label.pack()
+subscriptions_entry = Entry(window, width=50)
+subscriptions_entry.pack()
+
+
+misc_label = Label(window, text="\nLastly, any unaccounted for recurring expense add here", font= ('Aerial', 14))
+misc_label.pack()
+misc_entry = Entry(window, width=50)
+misc_entry.pack()
+
+window.mainloop()
